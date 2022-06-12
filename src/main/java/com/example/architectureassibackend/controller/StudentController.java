@@ -20,8 +20,7 @@ public class StudentController {
         this.studentService=studentService;
     }
     @PostMapping
-    public ResponseEntity<Student> saveEmployee(@RequestBody Student student){
-        System.out.println("f"+student.getFirstName()+"l"+student.getLastName());
+    public ResponseEntity<Student> saveStudent(@RequestBody Student student){
         return new ResponseEntity<Student>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
     @GetMapping
@@ -37,7 +36,7 @@ public class StudentController {
         return new ResponseEntity<Student>(studentService.updateStudent(student,id),HttpStatus.OK);
     }
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable long id){
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") long id){
         studentService.deleteStudent(id);
         return new ResponseEntity<String>("Deleted Successfully",HttpStatus.OK);
     }

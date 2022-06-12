@@ -1,22 +1,64 @@
 package com.example.architectureassibackend.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
 
-@Data
-@Entity
-@Table(name = "student")
+
+@Document("student")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "first_name", nullable = false)
+    @Field(name = "firstName")
     private String firstName;
-    @Column(name = "second_name", nullable = false)
+    @Field(name = "lastName")
     private String lastName;
-    @Column(name = "age",nullable = false)
+    @Field(name = "age")
     private int age;
-    @Column(name = "grade",nullable = false)
+    @Field(name = "grade")
     private int grade;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+
+    public Student(long id, String firstName, String lastName, int age, int grade) {
+        super();
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.grade = grade;
+    }
 }

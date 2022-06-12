@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+        return studentRepository.insert(student);
     }
 
     @Override
@@ -38,6 +38,8 @@ public class StudentServiceImpl implements StudentService {
         Student existingStudent=studentRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","Id",id));
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
+        existingStudent.setAge(student.getAge());
+        existingStudent.setGrade(student.getGrade());
         studentRepository.save(existingStudent);
         return existingStudent;
     }
